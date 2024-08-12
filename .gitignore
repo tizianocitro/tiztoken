@@ -1,5 +1,9 @@
+.vscode/
+.idea/
 __pycache__/
+.venv/
 .DS_Store
+
 models/**/*
 *.pytest_cache
 *.model
