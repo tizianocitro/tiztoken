@@ -7,7 +7,7 @@ https://github.com/openai/gpt-2/blob/master/src/encoder.py
 Unlike BasicTokenizer, RegexTokenizer handles an optional regex
 splitting pattern and optional special tokens.
 """
-s
+
 import regex as re
 from .base import Tokenizer, get_stats, merge
 
