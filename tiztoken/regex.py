@@ -1,7 +1,5 @@
 """
-Minimal byte-level Byte Pair Encoding tokenizer.
-
-Similar to the GPT tokenizer in:
+Similar to the GPT tokenizer at
 https://github.com/openai/gpt-2/blob/master/src/encoder.py
 
 Unlike BasicTokenizer, RegexTokenizer handles an optional regex

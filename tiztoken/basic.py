@@ -1,12 +1,9 @@
 """
-Minimal (byte-level) Byte Pair Encoding tokenizer.
-
-Algorithmically follows along the GPT tokenizer:
+Algorithmically follows the GPT tokenizer at
 https://github.com/openai/gpt-2/blob/master/src/encoder.py
 
-But:
-- Does not handle the regular expression splitting pattern.
-- Does not handle any special tokens.
+But it does not handle the regular expression splitting pattern
+and does not handle any special tokens (added in the RegexTokenizer).
 """
 
 from .base import Tokenizer, TOKENS, get_stats, merge
