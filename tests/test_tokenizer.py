@@ -6,12 +6,13 @@ from tiztoken import BasicTokenizer, RegexTokenizer, GPT4Tokenizer
 
 # common test data
 
-# a few strings to test the tokenizers on
+# strings to test the tokenizers on
 test_strings = [
-    "", # empty string
-    "?", # single character
-    "hello world!!!? (안녕하세요!) lol123 😉", # fun small string
-    "FILE:test_text.txt", # FILE: is handled as a special string in unpack()
+    "",
+    "?",
+    "hello world!!!? (안녕하세요!) lol123 😉",
+    # FILE: is handled as a special string in unpack()
+    "FILE:test_text.txt",
 ]
 
 def unpack(text):
