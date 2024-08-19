@@ -105,3 +105,45 @@ tokenizer.register_special_tokens({"<|endoftext|>": 32768})
 
 tokenizer.encode("<|endoftext|>hello world", allowed_special="all")
 ```
+
+## TizToken vs GPT4
+
+We can verify that the `RegexTokenizer` has feature parity with the GPT4 tokenizer from [tiktoken](https://github.com/openai/tiktoken) as follows:
+
+```python
+text = "hello123!!!? (안녕하세요!) 😉"
+
+# tiktoken
+import tiktoken
+# pretrained tokenizer from tiktoken
+enc = tiktoken.get_encoding("cl100k_base")
+print(enc.encode(text))
+# ---> [15339, 4513, 12340, 30, 320, 31495, 230, 75265, 243, 92245, 16715, 57037]
+
+# tiztoken
+from tiztoken import GPT4Tokenizer
+tokenizer = GPT4Tokenizer()
+print(tokenizer.encode(text))
+# ---> [15339, 4513, 12340, 30, 320, 31495, 230, 75265, 243, 92245, 16715, 57037]
+```
+
+Run `pip install tiktoken` to execute. Basically, the `GPT4Tokenizer` is just a wrapper around `RegexTokenizer`, passing in the merges and the special tokens of GPT-4. We can also ensure the special tokens are handled correctly:
+
+```python
+text = "<|endoftext|>hello world"
+
+# tiktoken
+import tiktoken
+# pretrained tokenizer from tiktoken
+enc = tiktoken.get_encoding("cl100k_base")
+print(enc.encode(text, allowed_special="all"))
+# ---> [100257, 15339, 1917]
+
+# tiztoken
+from tiztoken import GPT4Tokenizer
+tokenizer = GPT4Tokenizer()
+print(tokenizer.encode(text, allowed_special="all"))
+# ---> [100257, 15339, 1917]
+```
+
+Note that just like tiktoken, we have to explicitly declare our intent to use and parse special tokens in the call to encode. This is to avoid unintentionally tokenizing attacker-controlled data (e.g. user prompts) with special tokens. The `allowed_special` parameter can be set to `all`, `none`, or a `list of special tokens to allow`.
