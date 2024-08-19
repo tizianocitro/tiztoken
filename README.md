@@ -106,7 +106,7 @@ tokenizer.register_special_tokens({"<|endoftext|>": 32768})
 tokenizer.encode("<|endoftext|>hello world", allowed_special="all")
 ```
 
-## TizToken vs GPT4
+## TizToken GPT4 vs Tiktoken GPT4
 
 We can verify that the `RegexTokenizer` has feature parity with the GPT4 tokenizer from [tiktoken](https://github.com/openai/tiktoken) as follows:
 
